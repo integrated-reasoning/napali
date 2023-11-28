@@ -1,0 +1,45 @@
+{
+  "keybindings": {
+    "Home": {
+      "<H>": "ChangeScene(Home)",
+      "<S>": "ChangeScene(Session)",
+      "<I>": "ChangeScene(Internals)",
+      "<A>": "ChangeView(A)",
+      "<L>": "ChangeView(L)",
+      "<R>": "ChangeView(R)",
+      "<E>": "ChangeView(Prompt)",
+      "<?>": "ToggleOverlay(UsageInfo)",
+      "<q>": "Quit",
+      "<Ctrl-d>": "Quit",
+      "<Ctrl-c>": "Quit",
+      "<Ctrl-z>": "Suspend"
+    },
+    "Session": {
+      "<H>": "ChangeScene(Home)",
+      "<S>": "ChangeScene(Session)",
+      "<I>": "ChangeScene(Internals)",
+      "<A>": "ChangeView(A)",
+      "<L>": "ChangeView(L)",
+      "<R>": "ChangeView(R)",
+      "<.>": "ChangeView(Prompt)",
+      "<?>": "ToggleOverlay(UsageInfo)",
+      "<q>": "Quit",
+      "<Ctrl-d>": "Quit",
+      "<Ctrl-c>": "Quit",
+      "<Ctrl-z>": "Suspend"
+    },
+    "Internals": {
+      "<H>": "ChangeScene(Home)",
+      "<S>": "ChangeScene(Session)",
+      "<I>": "ChangeScene(Internals)",
+      "<A>": "ChangeView(A)",
+      "<L>": "ChangeView(L)",
+      "<R>": "ChangeView(R)",
+      "<?>": "ToggleOverlay(UsageInfo)",
+      "<q>": "Quit",
+      "<Ctrl-d>": "Quit",
+      "<Ctrl-c>": "Quit",
+      "<Ctrl-z>": "Suspend"
+    },
+  }
+}
