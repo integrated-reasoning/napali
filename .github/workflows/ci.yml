@@ -1,0 +1,56 @@
+name: "ci"
+
+on: [push, pull_request]
+
+env:
+  RUSTFLAGS: "-Dwarnings"
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: cachix/cachix-action@v12
+        with:
+          name: integrated-reasoning
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+      - name: build napali
+        run: |
+          if [[ $RUNNER_OS == Linux ]]; then
+            nix build
+          else
+            nix build \
+              --override-input nixpkgs github:nixos/nixpkgs/nixpkgs-23.05-darwin
+          fi
+      - name: build tests
+        run: |
+          if [[ $RUNNER_OS == Linux ]]; then
+            nix build .#ci
+          else
+            nix build .#ci \
+              --override-input nixpkgs github:nixos/nixpkgs/nixpkgs-23.05-darwin
+          fi
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: cachix/cachix-action@v12
+        with:
+          name: integrated-reasoning
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+      - name: Check formatting
+        run: nix develop --command cargo fmt --all --check
+      - name: Run Clippy
+        run: nix develop --command cargo clippy --all-targets --all-features
+      - name: Check flake
+        run: nix flake check
+      - name: Check nix shell
+        run: nix develop --ignore-environment --command "rustc" "--version"
