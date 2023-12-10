@@ -1,6 +1,13 @@
 name: "ci"
 
-on: [push, pull_request]
+on:
+  push:
+    paths-ignore:
+      - '**.md'
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize]
 
 env:
   RUSTFLAGS: "-Dwarnings"
