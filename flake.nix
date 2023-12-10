@@ -1,4 +1,6 @@
 {
+  description = "Optimization as a service TUI interface";
+
   inputs = {
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/*.tar.gz";
     cargo2nix.url = "github:cargo2nix/cargo2nix/release-0.11.0";
