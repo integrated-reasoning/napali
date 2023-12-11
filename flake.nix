@@ -25,6 +25,7 @@
         ];
 
         generalBuildInputs = [
+          pkgs.cargo-llvm-cov
           pkgs.cargo-nextest
           pkgs.gitlab-clippy
           pkgs.mold
