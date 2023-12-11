@@ -21,7 +21,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: DeterminateSystems/nix-installer-action@main
-      - uses: DeterminateSystems/magic-nix-cache-action@main
       - uses: cachix/cachix-action@v12
         with:
           name: integrated-reasoning
@@ -57,7 +56,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: DeterminateSystems/nix-installer-action@main
-      - uses: DeterminateSystems/magic-nix-cache-action@main
       - uses: cachix/cachix-action@v12
         with:
           name: integrated-reasoning
@@ -87,7 +85,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: DeterminateSystems/nix-installer-action@main
-      - uses: DeterminateSystems/magic-nix-cache-action@main
       - uses: cachix/cachix-action@v12
         with:
           name: integrated-reasoning
