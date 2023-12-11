@@ -87,10 +87,15 @@ impl IrxClient {
   /// Listen for incoming messages from the router and
   /// handle them based on their kind.
   pub fn run_responder(&mut self) {
-    let mut message_rx_from_router = self
+    let mut message_rx_from_router = match self
       .message_rx_from_router
-      .take()
-      .expect("receiver is not None");
+      .take() {
+        Some(receiver) => receiver,
+        None => {
+            eprintln!("Error: Receiver is None.");
+            return;
+        }
+    };
     let tx = self.message_tx_to_router.clone();
     let key = self.api_key.clone();
 
@@ -202,10 +207,19 @@ impl IrxClient {
         .map_err(|e| eyre!(e))?;
 
     let client = reqwest::Client::new();
-    let registration_url = Url::parse(Self::BASE)
-      .expect("base url is valid")
-      .join("register")
-      .expect("registration url is valid");
+    let registration_url = match Url::parse(Self::BASE) {
+        Ok(base) => match base.join("register") {
+            Ok(url) => url,
+            Err(_) => { 
+                eprintln!("Error: Registration URL is invalid.");
+                return Err(eyre!("Invalid registration URL"));
+            }
+        },
+        Err(_) => { 
+            eprintln!("Error: Base URL is invalid.");
+            return Err(eyre!("Invalid base URL"));
+        }
+    };
 
     let request_base = client
       .post(registration_url)
