@@ -117,7 +117,7 @@ impl Component for Base {
 
     // Render version information on the right side of the top bar
     f.render_widget(
-      Paragraph::new("Napali v0.0.1")
+      Paragraph::new("Napali v0.1.1")
         .block(Block::default().borders(Borders::NONE))
         .alignment(Alignment::Right),
       layer_top_bar_left_right[1],
