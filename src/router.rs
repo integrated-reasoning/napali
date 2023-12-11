@@ -144,7 +144,14 @@ impl Router {
     let mut message_rx_from_self = self
       .message_rx_from_self
       .take()
-      .expect("router has its own receiver"); // TODO replace all uses of expect()
+      ;
+    match message_rx_from_self {
+      Some(rx) => rx,
+      None => {
+          eprintln!("Error: router does not have its own receiver.");
+          return;
+      }
+    }
     let channel_table = self.channel_table.clone();
     tokio::spawn(async move {
       loop {
@@ -163,7 +170,11 @@ impl Router {
   /// * `channel_table`: The table mapping addresses to message senders.
   fn route(message: Message, channel_table: &ChannelTable) {
     match channel_table.get(&message.destination) {
-      Some(tx) => tx.send(message).expect("destination is reachable"),
+      Some(tx) => {
+        if let Err(e) = tx.send(message) {
+           eprintln!("Error sending message: {}", e);
+        }
+      },
       None => unreachable!(),
     }
   }
