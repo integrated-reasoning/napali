@@ -187,7 +187,7 @@ impl StatsDisplay {
     state.open(vec![1]);
     Ok((
       Tree::new(items)
-        .expect("all item identifiers are unique")
+        .ok_or_else(|| { eprintln!("Error: Item identifiers are not unique."); () })?
         .block(Block::new().borders(Borders::ALL).title("Stats")),
       state,
     ))
