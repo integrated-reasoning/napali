@@ -1,5 +1,5 @@
 {
-  description = "Optimization as a service TUI interface";
+  description = "Optimization as a service TUI";
 
   inputs = {
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/*.tar.gz";
@@ -45,13 +45,26 @@
         };
 
       in
+      rec
       {
         packages = {
           default = napali { };
           tests = napali { compileMode = "test"; };
           ci = pkgs.rustBuilder.runTests napali { };
         };
+
         devShell = workspaceShell;
+
+        image = pkgs.dockerTools.buildLayeredImage {
+          name = "napali";
+          tag = "latest";
+          maxLayers = 120;
+          contents = [
+            pkgs.cacert
+            packages.default
+          ];
+          config.Cmd = [ "napali" ];
+        };
       }
     );
 }
