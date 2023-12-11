@@ -1,3 +1,4 @@
+# Coding and contribution guidelines to be followed for project consistency.
 rules:
   - "All new business logic should have corresponding unit tests."
   - "Refactor large functions to be more modular."
@@ -14,4 +15,5 @@ draft: True
 
 blocked_dirs: []
 
+# Documentation-related configurations.
 docs: []
