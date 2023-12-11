@@ -1,6 +1,6 @@
 [package]
 name = "napali"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "TUI interface for Integrated Reasoning's accelerated solver API"
 include = ["src/**/*", "tests/**/*", "Cargo.*", "README.md"]
