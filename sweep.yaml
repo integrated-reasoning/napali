@@ -1,0 +1,17 @@
+rules:
+  - "All new business logic should have corresponding unit tests."
+  - "Refactor large functions to be more modular."
+  - "Add docstrings to all functions and file headers."
+  - "Use Conventional Commits as described in .cz.toml"
+
+branch: 'main'
+
+gha_enabled: True
+
+description: 'This is a Rust TUI project that builds with Nix+flakes'
+
+draft: True
+
+blocked_dirs: []
+
+docs: []
