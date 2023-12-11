@@ -10,6 +10,7 @@ on:
     types: [opened, synchronize]
 
 env:
+  CARGO_TERM_COLOR: always
   RUSTFLAGS: "-Dwarnings"
 
 jobs:
@@ -80,8 +81,6 @@ jobs:
 
   coverage:
     runs-on: ubuntu-latest
-    env:
-      CARGO_TERM_COLOR: always
     steps:
       - uses: actions/checkout@v3
       - uses: DeterminateSystems/nix-installer-action@main
