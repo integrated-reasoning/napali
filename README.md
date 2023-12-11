@@ -4,6 +4,7 @@
 ![docs.rs](https://img.shields.io/docsrs/napali)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE-MIT)
 [![codecov](https://codecov.io/github/integrated-reasoning/napali/graph/badge.svg?token=9T5TT0XE5X)](https://codecov.io/github/integrated-reasoning/napali)
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/integratedreasoning/napali/latest)
 [![FlakeHub](https://img.shields.io/endpoint?url=https://flakehub.com/f/integrated-reasoning/napali/badge)](https://flakehub.com/flake/integrated-reasoning/napali)
 
 ## About
@@ -25,4 +26,10 @@ Add napali to your `flake.nix`:
   };
 }
 
+```
+
+## Running with Docker
+
+```bash
+docker run -it integratedreasoning/napali:latest
 ```
