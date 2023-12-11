@@ -1,0 +1,39 @@
+name: "DockerHub"
+
+on:
+  push:
+    tags:
+      - "v?[0-9]+.[0-9]+.[0-9]+*"
+
+jobs:
+  push_to_registry:
+    name: Push image to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: cachix/cachix-action@v12
+        with:
+          name: integrated-reasoning
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        with:
+          images: integratedreasoning/napali
+
+      - name: Build and push Docker image
+        run: |
+            nix build .#image.x86_64-linux
+            docker load -i ./result
+            docker image tag napali:latest integratedreasoning/napali:latest
+            docker push integratedreasoning/napali:latest
