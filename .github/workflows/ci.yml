@@ -68,7 +68,7 @@ jobs:
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
             target/
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          key: ${{ runner.os }}-cargo-lint-${{ hashFiles('**/Cargo.lock') }}
       - name: Check formatting
         run: nix develop --command cargo fmt --all --check
       - name: Run Clippy
@@ -97,7 +97,7 @@ jobs:
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
             target/
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          key: ${{ runner.os }}-cargo-coverage-${{ hashFiles('**/Cargo.lock') }}
       - name: Generate code coverage
         run: nix develop --command cargo llvm-cov --all-features --workspace --lcov --output-path lcov.info nextest
       - name: Upload coverage to Codecov
