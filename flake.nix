@@ -19,13 +19,17 @@
           extraRustComponents = [ "rustfmt" "clippy" ];
         };
 
+        isLinux = lib.strings.hasSuffix "-linux" system;
+        linuxDependencies = lib.optionals isLinux [
+          pkgs.cargo-llvm-cov
+        ];
+
         isDarwin = lib.strings.hasSuffix "-darwin" system;
         darwinDependencies = lib.optionals isDarwin [
           pkgs.darwin.apple_sdk.frameworks.SystemConfiguration
         ];
 
         generalBuildInputs = [
-          pkgs.cargo-llvm-cov
           pkgs.cargo-nextest
           pkgs.gitlab-clippy
           pkgs.mold
@@ -33,7 +37,7 @@
           pkgs.openssl.dev
           pkgs.pkg-config
           pkgs.rustup
-        ] ++ darwinDependencies;
+        ] ++ linuxDependencies ++ darwinDependencies;
 
         napali = args: (rustPackageSet.workspace.napali ({ } // args)).overrideAttrs {
           buildInputs = generalBuildInputs;
