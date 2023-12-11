@@ -13,6 +13,8 @@ Napali is a TUI interface to Integrated Reasoning's hardware-accelerated solver 
 
 This developer preview release is intended for early adopters and has no solver related features enabled at this time.
 
+<img alt="Napali VHS demo" src="vhs.gif" width="600" />
+
 ## Usage as a flake
 
 Add napali to your `flake.nix`:
