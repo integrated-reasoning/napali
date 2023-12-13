@@ -107,3 +107,40 @@ impl<'a> Jobs<'a> {
     f.render_widget(tab_bar, tab_bar_area);
   }
 }
+
+#[cfg(test)]
+mod tests {
+  use super::*;
+  use pretty_assertions::assert_eq;
+
+  #[test]
+  fn test_view_conversion() {
+    assert_eq!(usize::from(View::All), 0);
+    assert_eq!(usize::from(View::Remote), 1);
+    assert_eq!(usize::from(View::Local), 2);
+    assert_eq!(usize::from(View::Prompt), 0);
+    assert_eq!(View::from(view::View::A), View::All);
+    assert_eq!(View::from(view::View::R), View::Remote);
+    assert_eq!(View::from(view::View::L), View::Local);
+    assert_eq!(View::from(view::View::Prompt), View::Prompt);
+  }
+
+  #[test]
+  fn test_jobs_new() {
+    let jobs = Jobs::new();
+    assert_eq!(jobs.view, View::All);
+  }
+
+  #[test]
+  fn test_jobs_set_view() {
+    let mut jobs = Jobs::new();
+    jobs.set_view(view::View::A);
+    assert_eq!(jobs.view, View::All);
+    jobs.set_view(view::View::R);
+    assert_eq!(jobs.view, View::Remote);
+    jobs.set_view(view::View::L);
+    assert_eq!(jobs.view, View::Local);
+    jobs.set_view(view::View::Prompt);
+    assert_eq!(jobs.view, View::Prompt);
+  }
+}
