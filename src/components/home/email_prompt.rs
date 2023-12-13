@@ -241,3 +241,73 @@ impl<'a> EmailPrompt<'a> {
       .map_err(|e| eyre!(e))
   }
 }
+
+#[cfg(test)]
+mod tests {
+  use super::*;
+  use color_eyre::Result;
+  use crossterm::event::{KeyCode, KeyEvent, KeyModifiers};
+
+  #[test]
+  fn test_email_prompt_new() {
+    let (tx, _) = mpsc::unbounded_channel::<Message>();
+    let _ = EmailPrompt::new(tx);
+  }
+
+  #[test]
+  fn test_layer() {
+    let (tx, _) = mpsc::unbounded_channel::<Message>();
+    let mut prompt = EmailPrompt::new(tx);
+    let _ = prompt.layer(Rect::default());
+  }
+
+  #[test]
+  fn test_reset() {
+    let (tx, _) = mpsc::unbounded_channel::<Message>();
+    let mut prompt = EmailPrompt::new(tx);
+    prompt.reset();
+  }
+
+  #[test]
+  fn test_activate() -> Result<()> {
+    let (tx, _) = mpsc::unbounded_channel::<Message>();
+    let mut prompt = EmailPrompt::new(tx);
+    let _ = prompt.activate()?;
+    Ok(())
+  }
+
+  #[test]
+  fn test_deactivate() {
+    let (tx, _) = mpsc::unbounded_channel::<Message>();
+    let mut prompt = EmailPrompt::new(tx);
+    prompt.deactivate();
+  }
+
+  #[test]
+  fn test_is_active() {
+    let (tx, _) = mpsc::unbounded_channel::<Message>();
+    let mut prompt = EmailPrompt::new(tx);
+    let _ = prompt.activate();
+    assert!(prompt.is_active());
+    prompt.deactivate();
+    assert!(!prompt.is_active());
+    let _ = prompt.activate();
+    assert!(prompt.is_active());
+  }
+
+  #[test]
+  fn test_handle_key_event() -> Result<()> {
+    let (tx, _) = mpsc::unbounded_channel::<Message>();
+    let mut prompt = EmailPrompt::new(tx);
+    let event = KeyEvent::new(KeyCode::Char('a'), KeyModifiers::empty());
+    prompt.handle_key_event(event)?;
+    Ok(())
+  }
+
+  #[test]
+  fn test_validate() {
+    let (tx, _) = mpsc::unbounded_channel::<Message>();
+    let mut prompt = EmailPrompt::new(tx);
+    prompt.validate();
+  }
+}
