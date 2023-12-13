@@ -168,3 +168,14 @@ impl StateDisplay {
     Ok(())
   }
 }
+
+#[cfg(test)]
+mod tests {
+  use super::*;
+
+  #[test]
+  fn test_state_display_new() {
+    let (tx, _) = mpsc::unbounded_channel::<Message>();
+    StateDisplay::new(tx);
+  }
+}
