@@ -10,13 +10,14 @@ use serde::{
   Deserialize, Serialize,
 };
 use std::fmt;
+use strum::EnumIter;
 use view::View;
 
 /// Represents possible actions within the application.
 ///
 /// This enum defines various actions that can be triggered by the user or the system,
 /// such as rendering, resizing, or changing the current scene.
-#[derive(Default, Debug, Clone, PartialEq, Eq, Hash, Serialize)]
+#[derive(Default, Debug, Clone, PartialEq, Eq, Hash, Serialize, EnumIter)]
 pub enum Action {
   #[default]
   Tick,
