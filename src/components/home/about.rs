@@ -69,3 +69,13 @@ impl About {
     f.render_widget(text, layer);
   }
 }
+
+#[cfg(test)]
+mod tests {
+  use super::*;
+
+  #[test]
+  fn test_about() {
+    let _ = About::about();
+  }
+}
