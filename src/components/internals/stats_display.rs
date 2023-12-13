@@ -224,3 +224,37 @@ impl StatsDisplay {
     Ok(())
   }
 }
+
+#[cfg(test)]
+mod tests {
+  use super::*;
+  use strum::IntoEnumIterator;
+
+  #[test]
+  fn test_stats_display_new() {
+    StatsDisplay::new();
+  }
+
+  #[test]
+  fn test_update() {
+    let mut actions = Buffers::default();
+    let mut counters = Counters::default();
+    for action in Action::iter() {
+      StatsDisplay::update(&mut actions, &mut counters, action);
+    }
+  }
+
+  #[test]
+  fn test_app_tick() {
+    let mut display = StatsDisplay::new();
+    let mut counters = Counters::default();
+    display.app_tick(&mut counters);
+  }
+
+  #[test]
+  fn test_render_tick() {
+    let mut display = StatsDisplay::new();
+    let mut counters = Counters::default();
+    display.render_tick(&mut counters);
+  }
+}
