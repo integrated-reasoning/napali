@@ -150,3 +150,14 @@ impl Component for Internals {
     Ok(())
   }
 }
+
+#[cfg(test)]
+mod tests {
+  use super::*;
+
+  #[test]
+  fn test_internals_new() {
+    let (tx, _) = mpsc::unbounded_channel::<Message>();
+    let _ = Internals::new(tx);
+  }
+}
