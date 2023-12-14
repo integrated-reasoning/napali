@@ -90,3 +90,28 @@ impl<'a> Logs<'a> {
     }
   }
 }
+
+#[cfg(test)]
+mod tests {
+  use super::*;
+
+  #[test]
+  fn test_workspaces_new() {
+    let _ = Workspaces::new();
+  }
+
+  #[test]
+  fn test_status_new() {
+    let _ = Status::new();
+  }
+
+  #[test]
+  fn test_plots_new() {
+    let _ = Plots::new();
+  }
+
+  #[test]
+  fn test_logs_new() {
+    let _ = Logs::new();
+  }
+}
