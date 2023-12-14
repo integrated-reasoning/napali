@@ -29,7 +29,7 @@ pub struct IrxClient {
 #[derive(Deserialize, Debug)]
 struct RegistrationResponseBody {
   #[serde(rename = "apiKeyId")]
-  api_key_id: String,
+  _api_key_id: String,
   #[serde(rename = "apiKeyValue")]
   api_key_value: ApiKey,
 }
@@ -38,7 +38,7 @@ struct RegistrationResponseBody {
 #[derive(Deserialize, Debug)]
 struct RegistrationResponse {
   #[serde(rename = "statusCode")]
-  status_code: u32,
+  _status_code: u32,
   body: String,
 }
 
