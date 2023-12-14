@@ -256,6 +256,16 @@ impl App {
     tui.exit()?;
     Ok(())
   }
+}
 
-  // Additional methods or helper functions...
+#[cfg(test)]
+mod tests {
+  use super::*;
+  use color_eyre::eyre::Result;
+
+  #[tokio::test]
+  async fn test_app_new() -> Result<()> {
+    let _ = App::new(1.0, 60.0).await?;
+    Ok(())
+  }
 }
