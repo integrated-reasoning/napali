@@ -178,8 +178,11 @@ impl IrxClient {
     let config_path = Self::get_config_path()
       .ok_or_else(|| eyre!("failed to get config path"))?;
     let key_path = config_path.as_path().join(std::path::Path::new("key.txt"));
-    fs::create_dir_all(config_path)?;
-    fs::write(key_path, api_key.to_string())?;
+    if let Err(e) = fs::create_dir_all(config_path) {
+      log::warn!("{e:?}");
+    } else {
+      fs::write(key_path, api_key.to_string())?;
+    }
     Ok(())
   }
 
