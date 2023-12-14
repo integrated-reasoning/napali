@@ -107,3 +107,14 @@ impl RenderFps {
     f.render_widget(Self::chart(&data), layer);
   }
 }
+
+#[cfg(test)]
+mod tests {
+  use super::*;
+
+  #[test]
+  fn test_chart() {
+    let data = vec![(0.0, 0.0)];
+    let _ = RenderFps::chart(&data);
+  }
+}
