@@ -136,3 +136,12 @@ impl Component for Base {
     Ok(())
   }
 }
+#[cfg(test)]
+mod tests {
+  use super::*;
+
+  #[test]
+  fn test_base_new() {
+    let _ = Base::new();
+  }
+}
