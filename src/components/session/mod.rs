@@ -97,3 +97,13 @@ impl<'a> Component for Session<'a> {
     }
   }
 }
+
+#[cfg(test)]
+mod tests {
+  use super::*;
+
+  #[test]
+  fn test_session_new() {
+    let _ = Session::new();
+  }
+}
