@@ -68,7 +68,8 @@ impl IrxClient {
           Some(key)
         }
         Err(e) => {
-          panic!("{e}");
+          log::warn!("{e:?}");
+          None
         }
       },
     };
