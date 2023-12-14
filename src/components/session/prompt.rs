@@ -87,3 +87,20 @@ impl<'a> Prompt<'a> {
     f.render_widget(self.text.widget(), layer);
   }
 }
+
+#[cfg(test)]
+mod tests {
+  use super::*;
+
+  #[test]
+  fn test_prompt_new() {
+    let _ = Prompt::new();
+  }
+
+  #[test]
+  fn test_toggle() {
+    let mut prompt = Prompt::new();
+    prompt.toggle();
+    prompt.toggle();
+  }
+}
