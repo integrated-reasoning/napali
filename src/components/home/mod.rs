@@ -143,3 +143,14 @@ impl<'a> Component for Home<'a> {
     Ok(())
   }
 }
+
+#[cfg(test)]
+mod tests {
+  use super::*;
+
+  #[test]
+  fn test_home_new() {
+    let (tx, _) = mpsc::unbounded_channel::<Message>();
+    let _ = Home::new(tx);
+  }
+}
