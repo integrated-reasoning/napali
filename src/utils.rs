@@ -9,8 +9,8 @@ use tracing_subscriber::{
   Layer,
 };
 
-/// Static variable containing the current Git commit hash.
-//pub static GIT_COMMIT_HASH: &str = env!("_GIT_INFO"); // FIX
+// Static variable containing the current Git commit hash.
+// pub static GIT_COMMIT_HASH: &str = env!("_GIT_INFO"); // FIX
 
 lazy_static! {
     /// The project name, derived from the crate name and converted to uppercase.
@@ -220,4 +220,31 @@ Authors: {author}
 Config directory: {config_dir_path}
 Data directory: {data_dir_path}"
   )
+}
+
+#[cfg(test)]
+mod tests {
+  use super::*;
+  use color_eyre::eyre::Result;
+
+  #[test]
+  fn test_project_directory() {
+    let dir = project_directory();
+    assert!(dir.is_some());
+  }
+
+  #[test]
+  fn test_get_data_dir() {
+    get_data_dir();
+  }
+
+  #[test]
+  fn test_get_config_dir() {
+    get_config_dir();
+  }
+
+  #[test]
+  fn test_version() {
+    version();
+  }
 }
