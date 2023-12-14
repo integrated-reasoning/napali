@@ -77,3 +77,14 @@ impl Layers {
     }
   }
 }
+
+#[cfg(test)]
+mod tests {
+  use super::*;
+
+  #[test]
+  fn test_layers_new() {
+    let rect = Rect::default();
+    let _ = Layers::new(rect);
+  }
+}
