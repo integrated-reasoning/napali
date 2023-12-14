@@ -168,3 +168,25 @@ impl Router {
     }
   }
 }
+
+#[cfg(test)]
+mod tests {
+  use super::*;
+  use color_eyre::eyre::Result;
+
+  #[tokio::test]
+  async fn test_router_new() -> Result<()> {
+    let (tx, _) = mpsc::unbounded_channel::<Message>();
+    let _ = Router::new(tx).await?;
+    Ok(())
+  }
+
+  #[tokio::test]
+  async fn test_register() -> Result<()> {
+    let (tx0, _) = mpsc::unbounded_channel::<Message>();
+    let (tx1, _) = mpsc::unbounded_channel::<Message>();
+    let (mut router, _) = Router::new(tx0).await?;
+    router.register(Address::Drop, tx1);
+    Ok(())
+  }
+}
