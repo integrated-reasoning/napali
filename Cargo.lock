@@ -1266,7 +1266,7 @@ dependencies = [
  "libc",
  "log",
  "pretty_assertions",
- "ratatui",
+ "ratatui 0.24.0",
  "regress",
  "reqwest",
  "ringbuffer",
@@ -1680,6 +1680,24 @@ dependencies = [
 ]
 
 [[package]]
+name = "ratatui"
+version = "0.25.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a5659e52e4ba6e07b2dad9f1158f578ef84a73762625ddb51536019f34d180eb"
+dependencies = [
+ "bitflags 2.4.1",
+ "cassowary",
+ "indoc",
+ "itertools 0.12.0",
+ "lru",
+ "paste",
+ "stability",
+ "strum",
+ "unicode-segmentation",
+ "unicode-width",
+]
+
+[[package]]
 name = "redox_syscall"
 version = "0.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2022,6 +2040,16 @@ checksum = "7b5fac59a5cb5dd637972e5fca70daf0523c9067fcdc4842f053dae04a18f8e9"
 dependencies = [
  "libc",
  "windows-sys 0.48.0",
+]
+
+[[package]]
+name = "stability"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ebd1b177894da2a2d9120208c3386066af06a488255caabc5de8ddca22dbc3ce"
+dependencies = [
+ "quote",
+ "syn 1.0.109",
 ]
 
 [[package]]
@@ -2440,18 +2468,18 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a3e38ced1f941a9cfc923fbf2fe6858443c42cc5220bfd35bdd3648371e7bd8e"
 dependencies = [
  "crossterm",
- "ratatui",
+ "ratatui 0.24.0",
  "regex",
  "unicode-width",
 ]
 
 [[package]]
 name = "tui-tree-widget"
-version = "0.15.0"
+version = "0.16.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "81e8f35d72bc3043dc80c980aa3d6ad33edeff5b9100e54cd5dee09b26574da6"
+checksum = "136011b328c4f392499a02c4b5b78d509fb297bf9c10f2bda5d11d65cb946e4c"
 dependencies = [
- "ratatui",
+ "ratatui 0.25.0",
  "unicode-width",
 ]
 
