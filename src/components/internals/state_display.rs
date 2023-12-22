@@ -2,7 +2,7 @@ use crate::router::{Address, Cacheable, Kind, Message, Payload};
 use color_eyre::eyre::{eyre, Result};
 use ratatui::{
   prelude::*,
-  widgets::{Block, BorderType, Borders, Paragraph},
+  widgets::{block::Block, BorderType, Borders, Paragraph},
 };
 use std::collections::HashMap;
 use tokio::sync::mpsc;

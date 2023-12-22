@@ -7,7 +7,7 @@ use crossterm::event::KeyEvent;
 use email_address::EmailAddress;
 use ratatui::{
   prelude::*,
-  widgets::{Block, Borders},
+  widgets::{block::Block, Borders},
 };
 use tokio::sync::mpsc;
 use tui_textarea::{Input, Key, TextArea};

@@ -4,7 +4,7 @@ use crate::tui::Frame;
 use color_eyre::eyre::Result;
 use ratatui::{
   prelude::*,
-  widgets::{Block, Borders, Paragraph, Tabs},
+  widgets::{block::Block, Borders, Paragraph, Tabs},
 };
 
 /// The base layer and tab bar of a TUI application.

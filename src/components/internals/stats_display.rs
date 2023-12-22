@@ -5,7 +5,7 @@ use crate::{action::Action, tui::Frame};
 use color_eyre::eyre::Result;
 use ratatui::{
   prelude::*,
-  widgets::{Block, Borders},
+  widgets::{block::Block, Borders},
 };
 use ringbuffer::RingBuffer;
 use std::time::Instant;
