@@ -3,7 +3,7 @@ use crate::router::Message;
 use crate::tui::Frame;
 use ratatui::{
   prelude::*,
-  widgets::{Block, Borders, List, ListItem},
+  widgets::{block::Block, Borders, List, ListItem},
 };
 use ringbuffer::RingBuffer;
 use tokio::sync::mpsc;

@@ -5,7 +5,7 @@ use color_eyre::eyre::Result;
 use crossterm::event::KeyEvent;
 use ratatui::{
   prelude::*,
-  widgets::{Block, BorderType, Borders, Clear, Row, Table},
+  widgets::{block::Block, BorderType, Borders, Clear, Row, Table},
 };
 use tokio::sync::mpsc::UnboundedSender;
 
@@ -100,29 +100,31 @@ impl Component for UsageInfo {
         // TODO: Make this component-specific
         Row::new(vec!["H", "Home"]),
         Row::new(vec!["S", "Session"]),
-        Row::new(vec!["I", "Configuration"]),
+        Row::new(vec!["I", "Configuration info"]),
         Row::new(vec!["E", "Email prompt"]),
-        Row::new(vec!["q", "Quit"]),
+        Row::new(vec!["Q", "Quit"]),
         Row::new(vec!["?", "Show usage help"]),
       ];
-      let table = Table::new(rows)
-        .header(
-          Row::new(vec!["Key", "Action"])
-            .bottom_margin(1)
-            .style(Style::default().add_modifier(Modifier::BOLD)),
-        )
-        .widths(&[Constraint::Percentage(10), Constraint::Percentage(90)])
-        .column_spacing(1)
-        .block(
-          Block::default()
-            .title("Usage")
-            .title_alignment(Alignment::Left)
-            .borders(Borders::ALL)
-            .border_style(Style::default())
-            .border_type(BorderType::Rounded)
-            .style(Style::default()),
-        )
-        .style(Style::default());
+      let table = Table::new(
+        rows,
+        [Constraint::Percentage(10), Constraint::Percentage(90)],
+      )
+      .header(
+        Row::new(vec!["Key", "Action"])
+          .bottom_margin(1)
+          .style(Style::default().add_modifier(Modifier::BOLD)),
+      )
+      .column_spacing(1)
+      .block(
+        Block::default()
+          .title("Usage")
+          .title_alignment(Alignment::Left)
+          .borders(Borders::ALL)
+          .border_style(Style::default())
+          .border_type(BorderType::Rounded)
+          .style(Style::default()),
+      )
+      .style(Style::default());
       f.render_widget(Clear, horizontal_rects[1]);
       f.render_widget(
         table,

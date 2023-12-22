@@ -1,6 +1,6 @@
 use ratatui::{
   prelude::*,
-  widgets::{Block, BorderType, Borders},
+  widgets::{block::Block, BorderType, Borders},
 };
 
 /// Represents the Workspaces section in a TUI application.

@@ -1,7 +1,7 @@
 use crate::action::view;
 use ratatui::{
   prelude::*,
-  widgets::{Block, BorderType, Borders, Tabs},
+  widgets::{block::Block, BorderType, Borders, Tabs},
 };
 
 /// Represents different views that can be displayed in the Jobs section.
