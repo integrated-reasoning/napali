@@ -19,33 +19,26 @@
           extraRustComponents = [ "rustfmt" "clippy" ];
         };
 
-        isLinux = lib.strings.hasSuffix "-linux" system;
-        linuxDependencies = lib.optionals isLinux [
-          pkgs.cargo-llvm-cov
-        ];
-
-        isDarwin = lib.strings.hasSuffix "-darwin" system;
-        darwinDependencies = lib.optionals isDarwin [
-          pkgs.darwin.apple_sdk.frameworks.SystemConfiguration
-        ];
-
-        generalBuildInputs = [
+        buildInputs = [
           pkgs.cargo-nextest
-          pkgs.gitlab-clippy
           pkgs.mold
           pkgs.openssl
           pkgs.openssl.dev
           pkgs.pkg-config
           pkgs.rustup
-        ] ++ linuxDependencies ++ darwinDependencies;
+        ] ++ lib.optionals pkgs.stdenv.isLinux [
+          pkgs.cargo-llvm-cov
+        ] ++ lib.optionals pkgs.stdenv.isDarwin [
+          pkgs.darwin.apple_sdk.frameworks.SystemConfiguration
+        ];
 
         napali = args: (rustPackageSet.workspace.napali ({ } // args)).overrideAttrs {
-          buildInputs = generalBuildInputs;
+          inherit buildInputs;
         };
 
         workspaceShell = rustPackageSet.workspaceShell {
           RUSTFLAGS = "--cfg tokio_unstable";
-          packages = generalBuildInputs;
+          packages = buildInputs;
         };
 
       in
