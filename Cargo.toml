@@ -55,6 +55,10 @@ tui-textarea = { version = "0.4.0", features = ["crossterm", "ratatui", "search"
 tui-tree-widget = "0.16.0"
 url = "2.4.1"
 
+[patch.crates-io]
+# work-around for https://github.com/tkaitchuck/aHash/issues/195
+ahash = { git = "https://github.com/tkaitchuck/aHash", rev = "v0.8.5" }
+
 [profile.release]
 opt-level = 3
 debug = false
