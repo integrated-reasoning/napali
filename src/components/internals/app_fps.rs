@@ -5,7 +5,7 @@ use itertools::Itertools;
 use itertools::MinMaxResult::{MinMax, NoElements, OneElement};
 use ratatui::{
   prelude::*,
-  widgets::{Axis, Block, Borders, Chart, Dataset},
+  widgets::{block::Block, Axis, Borders, Chart, Dataset},
 };
 use ringbuffer::RingBuffer;
 use tokio::sync::mpsc;

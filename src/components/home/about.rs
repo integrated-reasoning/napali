@@ -1,7 +1,7 @@
 use crate::tui::Frame;
 use ratatui::{
   prelude::*,
-  widgets::{Block, BorderType, Borders, Paragraph, Wrap},
+  widgets::{block::Block, BorderType, Borders, Paragraph, Wrap},
 };
 
 /// Represents an 'About' section in the TUI application.
