@@ -36,6 +36,7 @@ json5 = "0.4.1"
 lazy_static = "1.4.0"
 libc = "0.2.149"
 log = "0.4.20"
+mps = { version = "0.1.0", features = [] }
 pretty_assertions = "1.4.0"
 ratatui = { version = "0.25.0", features = ["serde", "macros"] }
 regress = "0.7.1"
