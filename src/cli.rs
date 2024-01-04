@@ -1,4 +1,3 @@
-use crate::utils::version;
 use clap::Parser;
 
 /// Command-line interface (CLI) arguments for Napali.
@@ -7,8 +6,16 @@ use clap::Parser;
 /// It parses command-line arguments and provides a user-friendly interface for configuring
 /// Napali's settings.
 #[derive(Parser, Debug)]
-#[command(author, version = version(), about)]
+#[command(author, about)]
 pub struct Cli {
+  #[arg(
+    short,
+    long,
+    value_name = "FILE",
+    help = "The path to the MPS file to load"
+  )]
+  pub input_path: Option<String>,
+
   /// Tick rate configuration for Napali.
   ///
   /// Specifies the number of logic updates (ticks) per second.
