@@ -14,8 +14,8 @@ keywords = ["optimization", "integer-programming", "TUI", "solver", "math"]
 categories = ["mathematics", "algorithms", "science", "visualization", "api-bindings"]
 
 [features]
-default = []
-unstable = []
+default = [ "tui" ]
+tui = []
 
 [dependencies]
 better-panic = "0.3.0"
