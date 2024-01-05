@@ -18,6 +18,7 @@ use serde::{Deserialize, Serialize};
 pub enum Scene {
   Internals,
   #[default]
+  Data,
   Session,
   About,
 }

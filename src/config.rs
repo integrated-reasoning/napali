@@ -10,12 +10,10 @@ const CONFIG: &str = "
 {
   \"keybindings\": {
     \"About\": {
+      \"<d>\": \"ChangeScene(Data)\",
       \"<a>\": \"ChangeScene(About)\",
       \"<s>\": \"ChangeScene(Session)\",
       \"<i>\": \"ChangeScene(Internals)\",
-      \"<A>\": \"ChangeView(A)\",
-      \"<L>\": \"ChangeView(L)\",
-      \"<R>\": \"ChangeView(R)\",
       \"<E>\": \"ChangeView(Prompt)\",
       \"<?>\": \"ToggleOverlay(UsageInfo)\",
       \"<q>\": \"Quit\",
@@ -23,7 +21,19 @@ const CONFIG: &str = "
       \"<Ctrl-c>\": \"Quit\",
       \"<Ctrl-z>\": \"Suspend\"
     },
+    \"Data\": {
+      \"<d>\": \"ChangeScene(Data)\",
+      \"<a>\": \"ChangeScene(About)\",
+      \"<s>\": \"ChangeScene(Session)\",
+      \"<i>\": \"ChangeScene(Internals)\",
+      \"<?>\": \"ToggleOverlay(UsageInfo)\",
+      \"<q>\": \"Quit\",
+      \"<Ctrl-d>\": \"Quit\",
+      \"<Ctrl-c>\": \"Quit\",
+      \"<Ctrl-z>\": \"Suspend\"
+    },
     \"Session\": {
+      \"<d>\": \"ChangeScene(Data)\",
       \"<a>\": \"ChangeScene(About)\",
       \"<s>\": \"ChangeScene(Session)\",
       \"<i>\": \"ChangeScene(Internals)\",
@@ -38,12 +48,10 @@ const CONFIG: &str = "
       \"<Ctrl-z>\": \"Suspend\"
     },
     \"Internals\": {
+      \"<d>\": \"ChangeScene(Data)\",
       \"<a>\": \"ChangeScene(About)\",
       \"<s>\": \"ChangeScene(Session)\",
       \"<i>\": \"ChangeScene(Internals)\",
-      \"<A>\": \"ChangeView(A)\",
-      \"<L>\": \"ChangeView(L)\",
-      \"<R>\": \"ChangeView(R)\",
       \"<?>\": \"ToggleOverlay(UsageInfo)\",
       \"<q>\": \"Quit\",
       \"<Ctrl-d>\": \"Quit\",

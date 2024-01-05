@@ -69,6 +69,7 @@ impl<'de> Deserialize<'de> for Action {
           "Refresh" => Ok(Action::Refresh),
           "ChangeScene(About)" => Ok(Action::ChangeScene(Scene::About)),
           "ChangeScene(Internals)" => Ok(Action::ChangeScene(Scene::Internals)),
+          "ChangeScene(Data)" => Ok(Action::ChangeScene(Scene::Data)),
           "ChangeScene(Session)" => Ok(Action::ChangeScene(Scene::Session)),
           "ChangeView(A)" => Ok(Action::ChangeView(View::A)),
           "ChangeView(R)" => Ok(Action::ChangeView(View::R)),

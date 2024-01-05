@@ -35,6 +35,7 @@ pub enum Address {
   IrxClient,
   Internals,
   StateDisplay,
+  Data,
   Session,
   About,
   App,

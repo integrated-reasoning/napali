@@ -3,8 +3,8 @@ use crate::{
   action::scene::Scene,
   action::Action,
   components::{
-    about::About, base::Base, internals::Internals, session::Session,
-    usage_info::UsageInfo, Component,
+    about::About, base::Base, data::Data, internals::Internals,
+    session::Session, usage_info::UsageInfo, Component,
   },
   config::Config,
   irx_client::IrxClient,
@@ -88,6 +88,7 @@ impl App {
     let scene = Scene::Internals;
     let mode = Mode::Navigation;
     let client = IrxClient::new(message_tx_to_router.clone()).await?;
+    let data = Data::new();
     let session = Session::new();
     router.register(Address::About, about.message_tx_to_self.clone());
     router.register(Address::Internals, internals.message_tx_to_self.clone());
@@ -104,6 +105,7 @@ impl App {
       components: vec![
         Box::new(internals),
         Box::new(about),
+        Box::new(data),
         Box::new(session),
         Box::new(base),
         // Overlays (must be listed last):

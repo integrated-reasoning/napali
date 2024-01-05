@@ -37,7 +37,7 @@ impl<'a> Session<'a> {
   pub fn new() -> Session<'a> {
     let (message_tx_to_self, _) = mpsc::unbounded_channel::<Message>();
     Session {
-      state: State::Visible,
+      state: State::Hidden,
       message_tx_to_self,
       prompt: Prompt::new(),
       jobs: Jobs::new(),
