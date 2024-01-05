@@ -9,8 +9,8 @@ use ratatui::layout::Rect;
 use serde::{Deserialize, Serialize};
 use tokio::sync::mpsc::UnboundedSender;
 
+pub mod about;
 pub mod base;
-pub mod home;
 pub mod internals;
 pub mod session;
 pub mod usage_info;

@@ -5,43 +5,43 @@ use crate::{tui::Event, tui::Frame};
 use color_eyre::eyre::Result;
 use ratatui::prelude::*;
 use tokio::sync::mpsc;
-mod about;
+mod about_text;
 mod email_prompt;
 mod layers;
-use about::About;
+use about_text::AboutText;
 use email_prompt::EmailPrompt;
 
-/// Represents the home screen of Napali.
+/// Represents the About screen of Napali.
 ///
 /// # Fields
-/// - `state`: Current state of the Home component.
-/// - `message_tx_to_self`: Sender for passing messages to the Home component itself.
+/// - `state`: Current state of the About component.
+/// - `message_tx_to_self`: Sender for passing messages to the About component itself.
 /// - `email_prompt`: Component for handling email prompt functionality.
 /// - `about`: Component representing the about section.
-/// - `mode`: Current operational mode of the Home component.
+/// - `mode`: Current operational mode of the About component.
 #[derive(Debug)]
-pub struct Home<'a> {
+pub struct About<'a> {
   state: State,
   pub message_tx_to_self: mpsc::UnboundedSender<Message>,
   email_prompt: EmailPrompt<'a>,
   mode: Mode,
 }
 
-impl<'a> Home<'a> {
-  /// Constructs a new instance of `Home`.
+impl<'a> About<'a> {
+  /// Constructs a new instance of `About`.
   ///
-  /// Initializes the home component with default values and sets up message channels
+  /// Initializes the About component with default values and sets up message channels
   /// for communication with the router and within the component.
   ///
   /// # Arguments
   /// - `tx`: Sender for passing messages to the router.
   ///
   /// # Returns
-  /// A new instance of `Home`.
-  pub fn new(tx: mpsc::UnboundedSender<Message>) -> Home<'a> {
+  /// A new instance of `About`.
+  pub fn new(tx: mpsc::UnboundedSender<Message>) -> About<'a> {
     let (message_tx_to_self, _) = mpsc::unbounded_channel::<Message>();
-    Home {
-      state: State::Visible,
+    About {
+      state: State::Hidden,
       message_tx_to_self,
       email_prompt: EmailPrompt::new(tx),
       mode: Mode::default(),
@@ -57,8 +57,8 @@ impl<'a> Home<'a> {
   }
 }
 
-impl<'a> Component for Home<'a> {
-  /// Updates the state and mode of the Home component based on the given action.
+impl<'a> Component for About<'a> {
+  /// Updates the state and mode of the About component based on the given action.
   ///
   /// Handles the transition between scenes and views, and manages activation of the email prompt.
   ///
@@ -79,12 +79,12 @@ impl<'a> Component for Home<'a> {
         Action::ChangeScene(scene) => {
           // Handle scene change actions
           match scene {
-            Scene::Home => self.state = State::Visible,
+            Scene::About => self.state = State::Visible,
             _ => self.state = State::Hidden,
           }
         }
         Action::ChangeView(k) => {
-          // Activate the email prompt if the view is prompt and home is visible
+          // Activate the email prompt if the view is prompt and About is visible
           if self.state == State::Visible {
             if let View::Prompt = k {
               return self.email_prompt.activate();
@@ -120,9 +120,9 @@ impl<'a> Component for Home<'a> {
     Ok(None)
   }
 
-  /// Renders the Home component onto the terminal frame.
+  /// Renders the About component onto the terminal frame.
   ///
-  /// This method is responsible for drawing the home screen, including the email prompt and about section.
+  /// This method is responsible for drawing the About screen, including the email prompt and about section.
   ///
   /// # Arguments
   /// - `f`: Mutable reference to the terminal frame.
@@ -138,7 +138,7 @@ impl<'a> Component for Home<'a> {
       let layers = layers::Layers::new(area);
       // Render the email prompt and about section
       self.email_prompt.render(layers.zero[2], f);
-      About::render(layers.zero[1], f);
+      AboutText::render(layers.zero[1], f);
     }
     Ok(())
   }
@@ -149,8 +149,8 @@ mod tests {
   use super::*;
 
   #[test]
-  fn test_home_new() {
+  fn test_about_new() {
     let (tx, _) = mpsc::unbounded_channel::<Message>();
-    let _ = Home::new(tx);
+    let _ = About::new(tx);
   }
 }

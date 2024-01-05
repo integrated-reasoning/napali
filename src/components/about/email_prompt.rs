@@ -131,7 +131,7 @@ impl<'a> EmailPrompt<'a> {
     self
       .message_tx_to_router
       .send(Message {
-        source: Address::Home,
+        source: Address::About,
         destination: Address::IrxClient,
         payload: Payload::Email(email),
         tag: None,

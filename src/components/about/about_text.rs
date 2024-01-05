@@ -4,14 +4,14 @@ use ratatui::{
   widgets::{block::Block, BorderType, Borders, Paragraph, Wrap},
 };
 
-/// Represents an 'About' section in the TUI application.
+/// Represents an 'AboutText' section in the TUI application.
 ///
 /// This struct is responsible for rendering informational text about the application,
 /// including user credits and terms.
 #[derive(Debug)]
-pub struct About {}
+pub struct AboutText {}
 
-impl About {
+impl AboutText {
   /// Creates a paragraph widget containing the about section text.
   ///
   /// # Returns
@@ -76,6 +76,6 @@ mod tests {
 
   #[test]
   fn test_about() {
-    let _ = About::about();
+    let _ = AboutText::about();
   }
 }

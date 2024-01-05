@@ -9,10 +9,10 @@ use std::{collections::HashMap, path::PathBuf};
 const CONFIG: &str = "
 {
   \"keybindings\": {
-    \"Home\": {
-      \"<H>\": \"ChangeScene(Home)\",
-      \"<S>\": \"ChangeScene(Session)\",
-      \"<I>\": \"ChangeScene(Internals)\",
+    \"About\": {
+      \"<a>\": \"ChangeScene(About)\",
+      \"<s>\": \"ChangeScene(Session)\",
+      \"<i>\": \"ChangeScene(Internals)\",
       \"<A>\": \"ChangeView(A)\",
       \"<L>\": \"ChangeView(L)\",
       \"<R>\": \"ChangeView(R)\",
@@ -24,9 +24,9 @@ const CONFIG: &str = "
       \"<Ctrl-z>\": \"Suspend\"
     },
     \"Session\": {
-      \"<H>\": \"ChangeScene(Home)\",
-      \"<S>\": \"ChangeScene(Session)\",
-      \"<I>\": \"ChangeScene(Internals)\",
+      \"<a>\": \"ChangeScene(About)\",
+      \"<s>\": \"ChangeScene(Session)\",
+      \"<i>\": \"ChangeScene(Internals)\",
       \"<A>\": \"ChangeView(A)\",
       \"<L>\": \"ChangeView(L)\",
       \"<R>\": \"ChangeView(R)\",
@@ -38,9 +38,9 @@ const CONFIG: &str = "
       \"<Ctrl-z>\": \"Suspend\"
     },
     \"Internals\": {
-      \"<H>\": \"ChangeScene(Home)\",
-      \"<S>\": \"ChangeScene(Session)\",
-      \"<I>\": \"ChangeScene(Internals)\",
+      \"<a>\": \"ChangeScene(About)\",
+      \"<s>\": \"ChangeScene(Session)\",
+      \"<i>\": \"ChangeScene(Internals)\",
       \"<A>\": \"ChangeView(A)\",
       \"<L>\": \"ChangeView(L)\",
       \"<R>\": \"ChangeView(R)\",
@@ -660,13 +660,13 @@ mod tests {
 
   /// Tests loading configuration for a specific scene.
   ///
-  /// Verifies that keybindings for a given scene (e.g., `Scene::Home`) are correctly loaded from the configuration.
+  /// Verifies that keybindings for a given scene (e.g., `Scene::About`) are correctly loaded from the configuration.
   #[test]
-  fn test_config_home() -> Result<()> {
+  fn test_config_about() -> Result<()> {
     let c = Config::new()?;
     assert_eq!(
       c.keybindings
-        .get(&Scene::Home)
+        .get(&Scene::About)
         .unwrap()
         .get(&parse_key_sequence("<q>").unwrap_or_default())
         .unwrap(),

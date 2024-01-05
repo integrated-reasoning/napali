@@ -98,11 +98,11 @@ impl Component for UsageInfo {
         .split(vertical_rects[1]);
       let rows = vec![
         // TODO: Make this component-specific
-        Row::new(vec!["H", "Home"]),
-        Row::new(vec!["S", "Session"]),
-        Row::new(vec!["I", "Configuration info"]),
-        Row::new(vec!["E", "Email prompt"]),
-        Row::new(vec!["Q", "Quit"]),
+        Row::new(vec!["s", "Session"]),
+        Row::new(vec!["i", "Internals"]),
+        Row::new(vec!["e", "Email prompt"]),
+        Row::new(vec!["a", "About"]),
+        Row::new(vec!["q", "Quit"]),
         Row::new(vec!["?", "Show usage help"]),
       ];
       let table = Table::new(

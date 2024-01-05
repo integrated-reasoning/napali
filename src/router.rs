@@ -36,7 +36,7 @@ pub enum Address {
   Internals,
   StateDisplay,
   Session,
-  Home,
+  About,
   App,
 }
 

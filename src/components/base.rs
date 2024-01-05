@@ -96,7 +96,7 @@ impl Component for Base {
     );
 
     let top_tabs = Tabs::new(
-      ["Home", "Session", "Internals", "? Usage"]
+      ["Session", "Internals", "About", "? Usage"]
         .iter()
         .map(|t| {
           let (first, rest) = t.split_at(1);
@@ -106,9 +106,9 @@ impl Component for Base {
     )
     .block(Block::default().borders(Borders::NONE))
     .select(match self.scene {
-      Scene::Home => 0,
-      Scene::Session => 1,
-      Scene::Internals => 2,
+      Scene::Session => 0,
+      Scene::Internals => 1,
+      Scene::About => 2,
     })
     .style(Style::default())
     .highlight_style(Style::default().bold());
