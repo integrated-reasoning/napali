@@ -35,3 +35,87 @@ Add napali to your `flake.nix`:
 ```bash
 docker run -it integratedreasoning/napali:latest
 ```
+
+## Roadmap
+
+- Core Capabilities
+  - Manage optimization problems in session containers
+  - Configure and select from a variety of MILP/LP solvers
+  - Specify hardware resources and tuning parameters per solver
+  - Submit local multi-threaded and remote cloud jobs
+  - Create solver ensembles with config permutations
+  - Monitor runs: status, resources, metrics, logging
+  - Interrupt, checkpoint and resume sessions
+  - Branch session histories and compare run outcomes
+- Workflow Features
+  - One-click setup workflows for common scenarios
+  - Quickstart templates for one-off testing
+  - Template library of parameterized configurations
+  - Automated notification triggers
+  - Analysis charts: performance, stability etc.
+  - Integrated visualization toolkit plugins
+- Infrastructure Integrations
+  - Git version control backend + diffing engine
+  - CI/CD pipeline plugins (GitHub Actions, Airflow etc.)
+  - Account and billing management
+- Interface Capabilities
+  - Multi-document tabbed interface
+  - CLI access to features beyond core TUI
+  - Contextual inline help and documentation
+  - Module subsystem for community extensions
+  - Scriptable actions
+
+### Sketches
+
+```
+╦═══════════════╦═════════════════════════════════════════════════════════════════════════════╦══════╦══════╗
+║ Napali        ║ miplib                                                                      ║ Warn ║ Help ║
+╠═══════════════╬═════════════════════════════════════════════════════════════════════════════╬══════╬══════╣
+║ Sessions >    ║ Problems:                                                                   ║ [0]  ║ F1   ║
+║               ║ ▶ assign1-5-8 (MIP) - ~/data/miplib/assign1-5-8                             ║      ║      ║
+║ New Session   ║                                                                             ║      ║      ║
+║               ║ > Validate              Solve Options         Submit          Results       ║      ║      ║
+║               ╟─────────────────────────────────────────────────────────────────────────────╢      ║      ║
+║               ║ Configure Ensemble Run                                                      ║      ║      ║
+║               ║                                                                             ║      ║      ║
+║               ║ Name: ensemble-1                                                            ║      ║      ║
+║               ║ Solvers:                                                                    ║      ║      ║
+║               ║  [+] honu                                                                   ║      ║      ║
+║               ║  [+] highs                                                                  ║      ║      ║
+║               ║  [+] cbc                                                                    ║      ║      ║
+║               ║  [+] ortools                                                                ║      ║      ║
+║               ║                                                                             ║      ║      ║
+║               ║ > Run ensemble                                                              ║      ║      ║
+║               ╚═════════════════════════════════════════════════════════════════════════════╩══════╩══════╝
+╚═══════════════╩═════════════════════════════════════════════════════════════════════════════╧══════╧══════╝
+
+╦══════════════╦═══════════════════════════════════════════════════════════════════════════╦═══ ══╦══════╗
+║ Napali       ║ miplib                                                                    ║ Warn ║ Help ║
+╠══════════════╬═══════════════════════════════════════════════════════════════════════════╬══════╬══════╣
+║ Sessions >   ║ Problems:                                                                 ║ [0]  ║ F1   ║
+║ New Session  ║ ▶ assign1-5-8 (MIP) - ~/data/miplib/assign1-5-8                           ║      ║      ║
+║              ╟───────────────────────────────────────────────────────────────────────────╢      ║      ║
+║              ║ Analysis Dashboard                                                        ║      ║      ║
+║              ║                                                                           ║      ║      ║
+║              ║ Found Best: ███████░░░                                                    ║      ║      ║
+║              ║ Path Progress: █░░░░░░░░░░░░█████░░░░░░░░░░░░███░█░░░░░░░░░░░             ║      ║      ║
+║              ║ Opt Gap: █░░░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░████░░░░░░░░░░░░░             ║      ║      ║
+║              ║ Nodes Left: █░░░░░░░░░░░░░░░░░░░░░█████░░░░░░░░░░░░░░░░░░░░░░             ║      ║      ║
+║              ╚═══════════════════════════════════════════════════════════════════════════╩══════╩══════╝
+╚══════════════╩═══════════════════════════════════════════════════════════════════════════╧══════╧══════╝
+
+╦═══════════╦═══════════════════════════════════════════════════════════════════════════════════════╦══════╦══════╗
+║ Napali    ║ miplib                                                                                ║ Warn ║ Help ║
+╠═══════════╬═══════════════════════════════════════════════════════════════════════════════════════╬══════╬══════╣
+║ Sessions >║  model v1      ┊ 1 week ago         │Vars: 120 Const: 245 Nonzeros: 1230 Status: Opt  ║ [0]  ║  F2  ║
+║ Open      ╟────┬───────────┴────────────────────┤Time: 10m Obj: $149,053 Cuts: 10 Nodes: 4,832    ║      ║      ║
+║           ║ dev╎ model v2  ┊ 3 days ago         │Vars: 100 Const: 215 Nonzeros: 1050 Status: Inf  ║      ║      ║
+║ Reports   ║    ╎───────────┬────────────────────┤Time: 8m Obj: NA Cuts: 5 Nodes: 342 Gap: 14%     ║      ║      ║
+║           ║    ╎ model v3  ┊ 1 day ago          │Vars: 95 Const: 203 Nonzeros: 980 Status: Opt*   ║ [1]  ║      ║
+║           ║    │           │                    │Time: 22m Obj: $147,261 Cuts: 23 Nodes: 8,495    ║      ║      ║
+║           ║    ╰───────────┼─────> supply v3*   │Vars: 102 Const: 218 Nonzeros: 1102 Estimated    ║      ║      ║
+║           ║ main ──╮       ╎ 1 hour ago         │                                                 ║      ║      ║
+║           ╬════════╝       ╚════════════════════╧═════════════════════════════════════════════════╩══════╩══════║
+║           ║  > Select commits to compare                                                                        ║
+╚═══════════╩═════════════════════════════════════════════════════════════════════════════════════════════════════╝
+```
