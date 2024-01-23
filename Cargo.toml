@@ -37,7 +37,7 @@ json5 = "0.4.1"
 lazy_static = "1.4.0"
 libc = "0.2.149"
 log = "0.4.20"
-mps = { version = "0.1.0", features = [] }
+mps = "0.1.1"
 pretty_assertions = "1.4.0"
 ratatui = { version = "0.25.0", features = ["serde", "macros"] }
 regress = "0.7.1"
@@ -56,10 +56,6 @@ tracing-subscriber = { version = "0.3.17", features = ["env-filter", "serde"] }
 tui-textarea = { version = "0.4.0", features = ["crossterm", "ratatui", "search"] }
 tui-tree-widget = "0.16.0"
 url = "2.4.1"
-
-[patch.crates-io]
-# work-around for https://github.com/tkaitchuck/aHash/issues/195
-ahash = { git = "https://github.com/tkaitchuck/aHash", rev = "v0.8.5" }
 
 [profile.release]
 opt-level = 3
