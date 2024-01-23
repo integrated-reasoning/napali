@@ -13,29 +13,29 @@ mod widgets;
 ///
 /// This struct handles various components of the data interface.
 #[derive(Debug)]
-pub struct Data<'a> {
+pub struct Data {
   state: State,
   pub message_tx_to_self: mpsc::UnboundedSender<Message>,
-  region: widgets::Region<'a>,
+  stats: widgets::Stats,
   mode: Mode,
 }
 
-impl<'a> Data<'a> {
+impl Data {
   /// Constructs a new `Data`.
   ///
   /// Initializes the interface with default components and state.
-  pub fn new() -> Data<'a> {
+  pub fn new() -> Data {
     let (message_tx_to_self, _) = mpsc::unbounded_channel::<Message>();
     Data {
       state: State::Hidden,
       message_tx_to_self,
-      region: widgets::Region::new(),
+      stats: widgets::Stats::new(),
       mode: Mode::default(),
     }
   }
 }
 
-impl<'a> Component for Data<'a> {
+impl Component for Data {
   /// Updates the data interface based on the given action.
   ///
   /// Handles mode changes and view updates, managing the visibility and state of components.
@@ -68,7 +68,7 @@ impl<'a> Component for Data<'a> {
       Ok(())
     } else {
       let layers = layers::Layers::new(area);
-      f.render_widget(self.region.block.clone(), layers.one[0]);
+      self.stats.render(layers.one[0], f);
       Ok(())
     }
   }
