@@ -20,7 +20,7 @@ unstable = []
 [dependencies]
 better-panic = "0.3.0"
 chrono = "0.4.31"
-clap = { version = "4.4.11", features = ["derive", "cargo", "wrap_help", "unicode", "string", "unstable-styles"] }
+clap = { version = "4.5.2", features = ["derive", "cargo", "wrap_help", "unicode", "string", "unstable-styles"] }
 color-eyre = "0.6.2"
 config = "0.13.3"
 console-subscriber = "0.2.0"
